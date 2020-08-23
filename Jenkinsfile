@@ -42,7 +42,30 @@ pipeline {
 			echo "Integration Test"
 			sh "mvn failsafe:integration-test failsafe:verify "    
 						 }
-						 }	 
+						 }
+		  stage('Package ) {
+                    steps{
+			echo "Package"
+			sh "mvn package -DskipTests "    
+						 }
+						 }   
+		 stage('Build Docker Image') {
+                    steps{
+			echo "Build Docker Image"
+			script {    
+			//sh "docker build -t abe0282/jenkins:$env.BUILD_TAG"
+			dockerimage = docker.build("abe0282/jenkins:${env.BUILD_TAG}")   
+						 }
+						 } 
+		  stage('Push Docker Image') {
+                    steps{
+			echo "Build Docker Image"
+			script {  
+			docker.withRegistry('','dockerhub'){	
+			dockerimage.push();
+			dockerimage.push(latest);	
+						 }
+						 } 
 		}				
 post {
 		always {
