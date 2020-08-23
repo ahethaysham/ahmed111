@@ -64,7 +64,8 @@ pipeline {
 			script {  
 			docker.withRegistry('','dockerhub'){	
 			dockerimage.push();
-			dockerimage.push(latest);	
+			dockerimage.push(latest);
+			}
 						 }
 						 } 
 		}				
