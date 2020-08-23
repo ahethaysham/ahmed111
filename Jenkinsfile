@@ -57,6 +57,7 @@ pipeline {
 			dockerimage = docker.build("abe0282/jenkins:${env.BUILD_TAG}")   
 						 }
 						 } 
+		 }
 		  stage('Push Docker Image') {
                     steps{
 			echo "Build Docker Image"
