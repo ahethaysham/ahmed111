@@ -72,7 +72,7 @@ pipeline {
 	    }
 	stage('Publish') {
   environment {
-    APPCENTER_API_TOKEN = 0b99e8a6e158ad97b47621f7787857c75f4702f0
+    APPCENTER_API_TOKEN = "0b99e8a6e158ad97b47621f7787857c75f4702f0"
   }
   steps {
     appCenter apiToken: APPCENTER_API_TOKEN,
