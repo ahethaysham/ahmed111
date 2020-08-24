@@ -70,18 +70,21 @@ pipeline {
 						 } 
 		}
 		    stage('DISTRIBUTE') {
-  			environment {
-    			APPCENTER_API_TOKEN = "0b99e8a6e158ad97b47621f7787857c75f4702f0"
+  			//environment {
+    			//APPCENTER_API_TOKEN = "0b99e8a6e158ad97b47621f7787857c75f4702f0"
   						}
   		  steps {
 			  sh "mkdir -p output"
 			  writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
 			  archiveArtifacts artifacts: 'output/*'
-      		appCenter apiToken: APPCENTER_API_TOKEN,
-            	ownerName: 'janes-addiction',
-            	appName: 'hvhhh',
-            	pathToApp: 'output/*',
-            	distributionGroups: 'casey, niccoli'
+			  appCenter apiToken: "0b99e8a6e158ad97b47621f7787857c75f4702f0", appName: 'hvhhh', buildVersion: '', 
+				  distributionGroups: 'testers', notifyTesters: false, ownerName: 'ahmed', 
+				  pathToApp: 'output/*', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: ''
+		//appCenter apiToken: APPCENTER_API_TOKEN,
+            	//ownerName: 'janes-addiction',
+            	//appName: 'hvhhh',
+            	//pathToApp: 'output/*',
+            	//distributionGroups: 'casey, niccoli'
   			}
 	    }
 		}
