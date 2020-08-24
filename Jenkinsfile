@@ -76,7 +76,7 @@ pipeline {
   		  steps {
 			  sh "mkdir -p output"
 			  writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
-			  archiveArtifacts artifacts: 'output/*.apk'
+			  archiveArtifacts artifacts: 'output/*'
       		appCenter apiToken: APPCENTER_API_TOKEN,
             	ownerName: 'janes-addiction',
             	appName: 'hvhhh',
