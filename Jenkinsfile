@@ -72,7 +72,7 @@ pipeline {
 		    stage('DISTRIBUTE') {
   			//environment {
     			//APPCENTER_API_TOKEN = "0b99e8a6e158ad97b47621f7787857c75f4702f0"
-  						}
+  			//			}
   		  steps {
 			  sh "mkdir -p output"
 			  writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
