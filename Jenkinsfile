@@ -78,10 +78,10 @@ pipeline {
 			  writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
 			  archiveArtifacts artifacts: 'output/*'
 			  appCenter apiToken: "bb294418c4a6a643d4af6ddaf7618b23a7c06752", appName: 'hvhhh', buildVersion: '', 
-				  distributionGroups: 'testers', notifyTesters: false, ownerName: 'ahmed', 
+				  distributionGroups: 'testers', notifyTesters: false, ownerName: 'abe0282-gmail.com', 
 				  pathToApp: 'output/*', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: ''
 		//appCenter apiToken: APPCENTER_API_TOKEN,
-            	//ownerName: 'janes-addiction',
+            	//ownerName: 'abe0282-gmail.com',
             	//appName: 'hvhhh',
             	//pathToApp: 'output/*',
             	//distributionGroups: 'casey, niccoli'
