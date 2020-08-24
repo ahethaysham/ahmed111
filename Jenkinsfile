@@ -80,7 +80,7 @@ pipeline {
       		appCenter apiToken: APPCENTER_API_TOKEN,
             	ownerName: 'janes-addiction',
             	appName: 'hvhhh',
-            	pathToApp: 'output/*.apk',
+            	pathToApp: 'output/*',
             	distributionGroups: 'casey, niccoli'
   			}
 	    }
