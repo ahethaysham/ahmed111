@@ -77,7 +77,7 @@ pipeline {
       		appCenter apiToken: APPCENTER_API_TOKEN,
             	ownerName: 'janes-addiction',
             	appName: 'hvhhh',
-            	pathToApp: 'three/days/xiola.apk',
+            	pathToApp: './',
             	distributionGroups: 'casey, niccoli'
   			}
 	    }
