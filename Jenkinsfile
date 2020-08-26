@@ -43,33 +43,6 @@ pipeline {
 			sh "mvn failsafe:integration-test failsafe:verify "    
 						 }
 						 }
-		  stage('Package' ) {
-                    steps{
-			echo "Package"
-			sh "mvn package -DskipTests "    
-						 }
-						 } 
-	    					 }
-
-		 stage('Build Docker Image') {
-                    steps{
-			echo "Build Docker Image"
-			script {    
-			//sh "docker build -t abe0282/jenkins:$env.BUILD_TAG"
-			dockerimage = docker.build("abe0282/jenkins:${env.BUILD_TAG}")   
-						 }
-						 } 
-		 }
-		  stage('Push Docker Image') {
-                    steps{
-			echo "Build Docker Image"
-			script {  
-			docker.withRegistry('','dockerhub'){	
-			dockerimage.push();
-			//dockerimage.push(latest);
-			}
-						 }
-						 } 
 		}
 			 stage('Build') {
 			 steps {
@@ -82,24 +55,6 @@ pipeline {
                   imageNames: [[image: "$env.ACR_REGISTRY/$env.IMAGE_NAME:$env.BUILD_NUMBER"]]
     					}
 		 			}
-		    stage('DISTRIBUTE') {
-  			//environment {
-    			//APPCENTER_API_TOKEN = "bb294418c4a6a643d4af6ddaf7618b23a7c06752"
-  			//			}
-  		  steps {
-			  sh "mkdir -p output"
-			  writeFile file: "output/usefulfile.txt", text: "This file is useful, need to archive it."
-			  archiveArtifacts artifacts: 'output/*'
-			  appCenter apiToken: "bb294418c4a6a643d4af6ddaf7618b23a7c06752", appName: 'hvhhh', buildVersion: '', 
-				  distributionGroups: 'testers', notifyTesters: false, ownerName: 'abe0282-gmail.com', 
-				  pathToApp: 'output/*', pathToDebugSymbols: '', pathToReleaseNotes: '', releaseNotes: ''
-		//appCenter apiToken: APPCENTER_API_TOKEN,
-            	//ownerName: 'abe0282-gmail.com',
-            	//appName: 'hvhhh',
-            	//pathToApp: 'output/*',
-            	//distributionGroups: 'casey, niccoli'
-  			}
-	    }
 		}
 post {
 		always {
