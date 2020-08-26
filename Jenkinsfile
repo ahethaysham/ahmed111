@@ -52,7 +52,6 @@ pipeline {
       			def imageWithTag = "$env.ACR_SERVER/$env.WEB_APP:$env.BUILD_NUMBER"
 				def image = docker.build imageWithTag}
 					}
-					}
 post {
 		always {
 			echo 'Im awesome. I run always'
