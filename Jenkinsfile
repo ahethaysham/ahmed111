@@ -54,7 +54,6 @@ pipeline {
       // push image
       image.push()
     }
-					}
 		    }
 		    }
 post {
