@@ -50,17 +50,7 @@ pipeline {
 						 }
 						 } 
 	    					 }
-		 stage('Build') {
-			 steps {
-    			sh 'mvn clean package'
-    		  acrQuickBuild azureCredentialsId: '2a9b8c43-0a5c-4e9f-8b9b-7201fe52037b',
-                  resourceGroupName: $env.aksrg1,
-                  registryName: $env.acrahmed812,
-                  platform: "Linux",
-                  dockerfile: "Dockerfile",
-                  imageNames: [[image: "$env.ACR_REGISTRY/$env.IMAGE_NAME:$env.BUILD_NUMBER"]]
-    					}
-		 			}
+
 		 stage('Build Docker Image') {
                     steps{
 			echo "Build Docker Image"
@@ -81,6 +71,17 @@ pipeline {
 						 }
 						 } 
 		}
+			 stage('Build') {
+			 steps {
+    			sh 'mvn clean package'
+    		  acrQuickBuild azureCredentialsId: '2a9b8c43-0a5c-4e9f-8b9b-7201fe52037b',
+                  resourceGroupName: $env.aksrg1,
+                  registryName: $env.acrahmed812,
+                  platform: "Linux",
+                  dockerfile: "Dockerfile",
+                  imageNames: [[image: "$env.ACR_REGISTRY/$env.IMAGE_NAME:$env.BUILD_NUMBER"]]
+    					}
+		 			}
 		    stage('DISTRIBUTE') {
   			//environment {
     			//APPCENTER_API_TOKEN = "bb294418c4a6a643d4af6ddaf7618b23a7c06752"
