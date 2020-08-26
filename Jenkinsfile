@@ -44,14 +44,12 @@ pipeline {
 						 }
 						 }
 			 stage('Build') {
-			 steps {
     			sh 'mvn clean package'
-    		  acrQuickBuild azureCredentialsId: 'principal-credentials-id',
-                  resourceGroupName: env.ACR_RES_GROUP,
-                  registryName: env.ACR_NAME,
-                  platform: "Linux",
-                  dockerfile: "Dockerfile",
-                  imageNames: [[image: "$env.ACR_REGISTRY/$env.IMAGE_NAME:$env.BUILD_NUMBER"]]
+    			withCredentials([usernamePassword(credentialsId: env.ACR_CRED_ID, usernameVariable: 'ACR_USER', passwordVariable: 'ACR_PASSWORD')]{
+      			sh 'docker login -u $ACR_USER -p $ACR_PASSWORD https://$ACR_SERVER'
+      			// build image
+      			def imageWithTag = "$env.ACR_SERVER/$env.WEB_APP:$env.BUILD_NUMBER"
+      			def image = docker.build imageWithTag
     					}
 		 			}
 		}
