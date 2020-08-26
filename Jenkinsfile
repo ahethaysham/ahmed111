@@ -50,6 +50,7 @@ pipeline {
 						 }
 						 } 
 		 stage('Build') {
+			 steps {
     			sh 'mvn clean package'
     		  acrQuickBuild azureCredentialsId: '2a9b8c43-0a5c-4e9f-8b9b-7201fe52037b',
                   resourceGroupName: aksrg1,
@@ -61,6 +62,7 @@ pipeline {
       		  // push image
       		  image.push()
     					}
+		 			}
 		 stage('Build Docker Image') {
                     steps{
 			echo "Build Docker Image"
