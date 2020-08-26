@@ -49,8 +49,7 @@ pipeline {
       			sh 'docker login -u $ACR_USER -p $ACR_PASSWORD https://$ACR_SERVER'
       			// build image
       			def imageWithTag = "$env.ACR_SERVER/$env.WEB_APP:$env.BUILD_NUMBER"
-      			def image = docker.build imageWithTag
-    					}
+				def image = docker.build imageWithTag}
 					}
 					}
 post {
