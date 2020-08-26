@@ -58,9 +58,6 @@ pipeline {
                   platform: "Linux",
                   dockerfile: "Dockerfile",
                   imageNames: [[image: "$env.ACR_REGISTRY/$env.IMAGE_NAME:$env.BUILD_NUMBER"]]
-      		  def image = docker.build imageWithTag
-      		  // push image
-      		  image.push()
     					}
 		 			}
 		 stage('Build Docker Image') {
