@@ -43,7 +43,6 @@ pipeline {
 			sh "mvn failsafe:integration-test failsafe:verify "    
 						 }
 						 }
-		}
 			 stage('Build') {
 			 steps {
     			sh 'mvn clean package'
