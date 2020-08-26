@@ -46,9 +46,9 @@ pipeline {
 			 stage('Build') {
 			 steps {
     			sh 'mvn clean package'
-    		  acrQuickBuild azureCredentialsId: '2a9b8c43-0a5c-4e9f-8b9b-7201fe52037b',
-                  resourceGroupName: $env.aksrg1,
-                  registryName: $env.acrahmed812,
+    		  acrQuickBuild azureCredentialsId: 'principal-credentials-id',
+                  resourceGroupName: env.ACR_RES_GROUP,
+                  registryName: env.ACR_NAME,
                   platform: "Linux",
                   dockerfile: "Dockerfile",
                   imageNames: [[image: "$env.ACR_REGISTRY/$env.IMAGE_NAME:$env.BUILD_NUMBER"]]
