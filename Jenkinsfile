@@ -44,6 +44,7 @@ pipeline {
 						 }
 						 }
     stage('Build') {
+	    steps {
     sh 'mvn clean package'
     withCredentials([usernamePassword(credentialsId: env.ACR_CRED_ID, usernameVariable: 'ACR_USER', passwordVariable: 'ACR_PASSWORD')]{
       sh 'docker login -u $ACR_USER -p $ACR_PASSWORD https://$ACR_SERVER'
