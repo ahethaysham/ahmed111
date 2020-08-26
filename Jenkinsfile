@@ -43,7 +43,7 @@ pipeline {
 			sh "mvn failsafe:integration-test failsafe:verify "    
 						 }
 						 }
-			 stage('Build') {
+		stage('Build') {
     			sh 'mvn clean package'
     			withCredentials([usernamePassword(credentialsId: env.ACR_CRED_ID, usernameVariable: 'ACR_USER', passwordVariable: 'ACR_PASSWORD')]{
       			sh 'docker login -u $ACR_USER -p $ACR_PASSWORD https://$ACR_SERVER'
@@ -52,7 +52,6 @@ pipeline {
       			def image = docker.build imageWithTag
     					}
 		 			}
-		}
 post {
 		always {
 			echo 'Im awesome. I run always'
