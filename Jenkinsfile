@@ -47,7 +47,6 @@ pipeline {
 		    steps {
 			script {
     sh "mvn clean package"
-    withCredentials([usernamePassword(credentialsId: env.ACR_CRED_ID, usernameVariable: 'ACR_USER', passwordVariable: 'ACR_PASSWORD')]
 			       }
 		           }
 		    }
