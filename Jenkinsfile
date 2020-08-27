@@ -43,15 +43,15 @@ pipeline {
 			sh "mvn failsafe:integration-test failsafe:verify "    
 						 }
 		}
-		        stage('Build') {
-	    steps {
-		script {
+    stage('Build') {
+		    steps {
+			script {
     sh 'mvn clean package'
     withCredentials([usernamePassword(credentialsId: env.ACR_CRED_ID, usernameVariable: 'ACR_USER', passwordVariable: 'ACR_PASSWORD')]
-					}
+			       }
+		           }
 		    }
-			}
-	    }
+	         }
 post {
 		always {
 			echo 'Im awesome. I run always'
