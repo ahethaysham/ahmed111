@@ -55,7 +55,6 @@ pipeline {
       // push image
       image.push()
     }
-}
 		    }
 			}
 	    }
