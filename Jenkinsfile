@@ -8,6 +8,7 @@ pipeline {
    //         args '-v /root/.m2:/root/.m2' 
    //	}}
 	environment {
+		ACR_SERVER=acrahmed812.azurecr.io
 		dockerHome = tool 'myDocker'
 		mavenHome  = tool 'myMaven'
 		PATH       = "$dockerHome/bin:$mavenHome/bin:$PATH" }
