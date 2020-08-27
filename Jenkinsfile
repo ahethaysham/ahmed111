@@ -47,7 +47,13 @@ pipeline {
 		    steps {
 			script {
     sh "mvn clean package"
-    withCredentials([usernamePassword(credentialsId: 'azureacr', passwordVariable: 'ACR_PASSWORD', usernameVariable: 'ACR_USER')]) {			
+    withCredentials([usernamePassword(credentialsId: 'azureacr', passwordVariable: 'ACR_PASSWORD', usernameVariable: 'ACR_USER')]) {	
+	      sh "docker login -u $ACR_USER -p $ACR_PASSWORD https://$ACR_SERVER"
+      // build image
+      def imageWithTag = "$env.ACR_SERVER/$env.WEB_APP:$env.BUILD_NUMBER"
+      def image = docker.build imageWithTag
+      // push image
+      image.push()    
 			       }
 		           }
 		    }
